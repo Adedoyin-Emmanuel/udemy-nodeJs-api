@@ -5,8 +5,8 @@
  */
 
 class CourseController {
-  constructor() {
-    this.getCourse = async (req, res) => {
+  constructor(req, res) {
+    this.getCourse = async () => {
       const CLIENTID = "sPvELj9EieMzpgwYZxEVncW8sWFTF8aTKub5J2gJ";
       const CLIENTSECRET =
         "4xpwMapojihPVoQdDwjET9StERujuqppTvDeQGTuQLF5qHJFzDXDex69kweUe9RdxJVDnWUdHuE8CQQx5TWPHsW5617sfTbpbRT8IDOkI7Y6V0UhtmnW5l6401DTn0DY";
@@ -24,10 +24,10 @@ class CourseController {
         const response = await fetch(apiUrl, options);
 
         if (response.ok) {
-          const data = response.json();
+          const data = await response.json();
           console.log(data);
 
-          return res.status(200).json(data);
+           res.status(200).json(data);
         }
       } catch (error) {
         console.log(error);
@@ -39,3 +39,5 @@ class CourseController {
     };
   }
 }
+
+module.exports = CourseController;
